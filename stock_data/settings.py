@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'stock_data.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_db_name',
-        'USER': 'your_db_user',
-        'PASSWORD': 'your_db_password',
+        'NAME': 'stock_data_db',
+        'USER': 'stock_user',
+        'PASSWORD': 'k%xbTw#4|y>>PkR<W7g8',
         'HOST': 'localhost',
         'PORT': '5432',
     }
