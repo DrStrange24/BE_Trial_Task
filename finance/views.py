@@ -6,6 +6,8 @@ from django.http import JsonResponse
 from .models import StockData, StockPrediction
 import numpy as np
 from datetime import timedelta, date
+from django.http import JsonResponse, FileResponse
+from .reports import generate_report, generate_pdf_report
 
 #http://127.0.0.1:8000/finance/backtest/?symbol=AAPL&initial_investment=10000&short_window=5&long_window=20
 def backtest_view(request):
@@ -54,3 +56,16 @@ def predict_view(request):
 
     # Return predictions
     return JsonResponse({'symbol': symbol, 'predictions': predictions})
+
+# http://127.0.0.1:8000/finance/report/?symbol=AAPL&format=json
+# http://127.0.0.1:8000/finance/report/?symbol=AAPL&format=pdf
+def report_view(request):
+    symbol = request.GET.get('symbol', 'AAPL')
+    format = request.GET.get('format', 'json')
+
+    if format == 'pdf':
+        pdf = generate_pdf_report(symbol)
+        return FileResponse(pdf, as_attachment=True, filename=f'{symbol}_report.pdf')
+    else:
+        plot_base64 = generate_report(symbol)
+        return JsonResponse({'symbol': symbol, 'plot': plot_base64})
