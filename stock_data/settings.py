@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'stock_data_db',
-        'USER': 'stock_user',
-        'PASSWORD': 'k%xbTw#4|y>>PkR<W7g8',
+        'USER': 'postgres',
+        'PASSWORD': 'T]T,(](l,Szp4l0V{3ri',
         'HOST': 'localhost',
         'PORT': '5432',
     }
